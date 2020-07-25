@@ -1,29 +1,50 @@
 import React from 'react';
 
 import './App.css';
-import { Container, Col, Row,Nav, NavLink } from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import Sidebar from './components/sidebar';
+import  Dashboard from './pages/dashboard';
+import  Orders from './pages/orders';
+import SupportCases from './pages/supportcases';
+import Items from './pages/items';
+import Newsletter from './pages/newsletter';
+
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Container>
         <Row>
           <Col>
-            <Nav defaultActiveKey="/home" className="flex-column">
-              <Nav.Link href="/home">Active</Nav.Link>
-              <Nav.Link eventKey="link-1">Link</Nav.Link>
-              <Nav.Link eventKey="link-2">Link</Nav.Link>
-              <Nav.Link eventKey="disabled" disabled>
-                Disabled
-              </Nav.Link>
-            </Nav>
+            <Sidebar></Sidebar>
           </Col>
-          <Col >2 of 3 (wider)</Col>
+          <Col >
+            <Switch>
+              <Route exact path="/">
+                <Dashboard />
+              </Route>
+              <Route path="/orders">
+                <Orders />
+              </Route>
+              <Route path="/support-cases">
+                <SupportCases />
+              </Route>
+              <Route path="/items">
+                <Items />
+              </Route>
+              <Route path="/newsletter">
+                <Newsletter />
+              </Route>
+            </Switch>
+          </Col>
         </Row>
       </Container>
-    </div>
+    </Router>
   );
 }
-
 export default App;
+
+
+
