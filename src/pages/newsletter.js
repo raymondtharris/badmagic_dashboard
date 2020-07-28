@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 
 import { useQuery, gql } from '@apollo/client';
 
-const orderQuery = gql`
-  {
+const ORDER_QUERY = gql`
+  query OrderQuery{
     newsletterUsers{
       firstname
       emailAddress
@@ -18,8 +18,8 @@ const orderQuery = gql`
 
 
 function Newsletter() {
-  const { loading, error, data} = useQuery(orderQuery);
-  console.log()
+  const { loading, error, data} = useQuery(ORDER_QUERY);
+  console.log(data)
 
   if (loading) return(
     <div>
@@ -28,16 +28,17 @@ function Newsletter() {
     </div>
 
   ); 
+  
+  if (error) return `Error! ${error.message}`;
   return (
     <div>
         <h2>Newsletter</h2>
-        {data.newsletterUsers}
+        
         <ListGroup>
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+            {data.newsletterUsers.map(newsletterUser=>(
+              <ListGroup.Item key={newsletterUser.emailAddress}>{newsletterUser.firstname} {newsletterUser.emailAddress}</ListGroup.Item>
+            ))}
+            
         </ListGroup>
     </div>
   );
