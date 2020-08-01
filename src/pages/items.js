@@ -1,8 +1,9 @@
 import React from 'react';
 
-import {Row, Col, CardDeck, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useQuery, gql } from '@apollo/client';
+import ItemCard from '../components/itemcard';
 
 const ITEMS_QUERY = gql`
   query {
@@ -27,7 +28,7 @@ const ITEMS_QUERY = gql`
 
 function Items() {
   const { loading, error, data} = useQuery(ITEMS_QUERY);
-  console.log(data)
+  //console.log(data)
 
   if (loading) return(
     <div>
@@ -46,25 +47,7 @@ function Items() {
         <div>Add Item</div>
         
         {data.items.map(item=>(
-              <Row key={item.id} >
-                <Col>
-                <Card.Img variant="top" src="https://via.placeholder.com/300x320?text=" />
-                </Col>
-                
-                <Card.Body>
-                  <Card.Text>{item.name}</Card.Text>
-                  <Card.Text>Inventory</Card.Text>
-                    <ListGroup horizontal>
-                    <ListGroup.Item>{item.inventory.xsmall}</ListGroup.Item>
-                      <ListGroup.Item>{item.inventory.small}</ListGroup.Item>
-                      <ListGroup.Item>{item.inventory.medium}</ListGroup.Item>
-                      <ListGroup.Item>{item.inventory.large}</ListGroup.Item>
-                      <ListGroup.Item>{item.inventory.xlarge}</ListGroup.Item>
-                      <ListGroup.Item>{item.inventory.xxlarge}</ListGroup.Item>
-                      <ListGroup.Item>{item.inventory.xxxlarge}</ListGroup.Item>
-                    </ListGroup>
-                </Card.Body>
-              </Row>
+              <ItemCard key={item.id} carddata={item}></ItemCard>
             ))}
         
     </div>
