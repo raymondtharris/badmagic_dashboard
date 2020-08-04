@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 
-import { Row, Col, Card, ListGroup, ToggleButton, ButtonGroup, Media } from 'react-bootstrap';
+import { Container,Row, Col, Card, ToggleButton, ButtonGroup, Button, Media } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function ItemCard(props) {
     //console.log(props)
+    
     const [radioValue, setRadioValue] = useState('1');
     const radios = [
         { name: 'Available', value: '1' },
@@ -14,10 +15,10 @@ function ItemCard(props) {
     
 
   return (
-    <Row key={props.carddata.id} >
+    <Row key={props.carddata.id} style={{marginTop: "10pt"}}>
         <Col md={4}>
-        <Media >
-            <img  
+        <Media>
+            <img  alt={props.carddata.name}
                 width={300}
                 height={300}
                 className="mr-3"
@@ -29,22 +30,41 @@ function ItemCard(props) {
         <Col>
             <Card>
                 <Card.Header>
-                    
                         {props.carddata.name} 
-                    
                 </Card.Header>
                 <Card.Body>
                     <Card.Text>Price - {props.carddata.price}</Card.Text>
-                    <Card.Text>Inventory</Card.Text>
-                    <ListGroup horizontal style={{border : 0 }} >
-                        <ListGroup.Item ><Row >XS</Row><Row >{props.carddata.inventory.xsmall}</Row></ListGroup.Item>
-                        <ListGroup.Item><Row>S</Row><Row>{props.carddata.inventory.small}</Row></ListGroup.Item>
-                        <ListGroup.Item><Row className="text-center">M</Row><Row>{props.carddata.inventory.medium}</Row></ListGroup.Item>
-                        <ListGroup.Item><Row>L</Row><Row>{props.carddata.inventory.large}</Row></ListGroup.Item>
-                        <ListGroup.Item><Row>XL</Row><Row>{props.carddata.inventory.xlarge}</Row></ListGroup.Item>
-                        <ListGroup.Item><Row>XXL</Row><Row>{props.carddata.inventory.xxlarge}</Row></ListGroup.Item>
-                        <ListGroup.Item><Row>XXXL</Row><Row>{props.carddata.inventory.xxxlarge}</Row></ListGroup.Item>
-                    </ListGroup>
+                    <Button variant="secondary">Discount</Button>{' '}
+                    <Card style={{marginTop: "10pt"}}>
+                        <Card.Header >
+                            Inventory
+                        </Card.Header>
+                        <Container className="text-center">
+                            <Row >
+                                    <Col className="border">XS</Col>
+                                    <Col className="border">S</Col>
+                                    <Col className="border">M</Col>
+                                    <Col className="border">L</Col>
+                                    <Col className="border">XL</Col>
+                                    <Col className="border">XXL</Col>
+                                    <Col className="border">XXXL</Col>
+                            </Row>
+                            <Row>
+                                    <Col className="border">{props.carddata.inventory.xsmall}</Col>
+                                    <Col className="border">{props.carddata.inventory.small}</Col>
+                                    <Col className="border">{props.carddata.inventory.medium}</Col>
+                                    <Col className="border">{props.carddata.inventory.large}</Col>
+                                    <Col className="border">{props.carddata.inventory.xlarge}</Col>
+                                    <Col className="border">{props.carddata.inventory.xxlarge}</Col>
+                                    <Col className="border">{props.carddata.inventory.xxxlarge}</Col>
+                            
+                                    
+                            </Row>
+                        </Container>
+                    </Card>
+
+                    
+                    
                     <br/>
                     <ButtonGroup toggle>
                             {radios.map((radio, idx) => (

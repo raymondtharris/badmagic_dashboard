@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { ListGroup} from 'react-bootstrap';
+import { ListGroup, Button} from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom'
+import {  } from 'react-router-dom'
 
 import { useQuery, gql } from '@apollo/client';
 
@@ -19,11 +19,11 @@ const ORDER_QUERY = gql`
 
 function Newsletter() {
   const { loading, error, data} = useQuery(ORDER_QUERY);
-  console.log(data)
+  
 
   if (loading) return(
     <div>
-        <h2>Newsletter</h2>
+        <h2>Newsletter {' '}<Button variant="secondary" size="sm">New Newsletter</Button>{' '}</h2>
         <p>Loading...</p>
     </div>
 
@@ -32,7 +32,7 @@ function Newsletter() {
   if (error) return `Error! ${error.message}`;
   return (
     <div>
-        <h2>Newsletter</h2>
+        <h2>Newsletter {' '}<Button variant="secondary" size="sm">New Newsletter</Button>{' '}</h2>
         
         <ListGroup>
             {data.newsletterUsers.map(newsletterUser=>(

@@ -10,6 +10,7 @@ import  Orders from './pages/orders';
 import SupportCases from './pages/supportcases';
 import Items from './pages/items';
 import Newsletter from './pages/newsletter';
+import NewsletterUsers from './pages/newsletterusers';
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from '@apollo/client';
 
 const client = new ApolloClient({
@@ -44,6 +45,9 @@ function App() {
                 </Route>
                 <Route path="/newsletter">
                   <Newsletter />
+                </Route>
+                <Route path="/newsletterusers">
+                  <NewsletterUsers />
                 </Route>
               </Switch>
             </Col>

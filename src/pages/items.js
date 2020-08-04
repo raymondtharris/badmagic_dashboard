@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useQuery, gql } from '@apollo/client';
 import ItemCard from '../components/itemcard';
@@ -32,7 +32,7 @@ function Items() {
 
   if (loading) return(
     <div>
-        <h2>Newsletter</h2>
+        <h2>Items {' '}<Button variant="secondary" size="sm">Add Item</Button>{' '}</h2>
         <p>Loading...</p>
     </div>
 
@@ -43,11 +43,9 @@ function Items() {
 
   return (
     <div>
-        <h2>Items</h2>
-        <div>Add Item</div>
-        
+        <h2>Items {' '}<Button variant="secondary" size="sm">Add Item</Button>{' '}</h2>
         {data.items.map(item=>(
-              <ItemCard key={item.id} carddata={item}></ItemCard>
+              <ItemCard key={item.id} carddata={item} ></ItemCard>
             ))}
         
     </div>
