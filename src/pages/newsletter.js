@@ -3,7 +3,7 @@ import React from 'react';
 import { ListGroup, Button} from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {  } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { useQuery, gql } from '@apollo/client';
 
@@ -23,7 +23,7 @@ function Newsletter() {
 
   if (loading) return(
     <div>
-        <h2>Newsletter {' '}<Button variant="secondary" size="sm">New Newsletter</Button>{' '}</h2>
+        <h2>Newsletter {' '}<Button as="Link" variant="secondary" size="sm">New Newsletter</Button>{' '}</h2>
         <p>Loading...</p>
     </div>
 
@@ -35,9 +35,7 @@ function Newsletter() {
         <h2>Newsletter {' '}<Button variant="secondary" size="sm">New Newsletter</Button>{' '}</h2>
         
         <ListGroup>
-            {data.newsletterUsers.map(newsletterUser=>(
-              <ListGroup.Item key={newsletterUser.emailAddress}>{newsletterUser.firstname} {newsletterUser.emailAddress}</ListGroup.Item>
-            ))}
+            
             
         </ListGroup>
     </div>
