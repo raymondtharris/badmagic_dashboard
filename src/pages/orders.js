@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ListGroup,Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {  } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { useQuery, gql } from '@apollo/client';
 
@@ -39,7 +39,7 @@ function Orders() {
           {data.orders.map(order=>(
               
               <ListGroup.Item key={order.id}>
-                <Button value={order.id} variant="secondary" size="sm" >View</Button>
+                <Button as="Link" href="/orders/00000000" value={order.id} variant="secondary" size="sm" >View</Button>
                 {' '} {order.status} #{order.id} {order.totalPrice} {order.emailAddress} {order.submitDate}
                 </ListGroup.Item>
             ))}

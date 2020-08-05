@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Sidebar from './components/sidebar';
 import  Dashboard from './pages/dashboard';
 import  Orders from './pages/orders';
+import  Order from './pages/order';
 import SupportCases from './pages/supportcases';
 import Items from './pages/items';
 import Newsletter from './pages/newsletter';
@@ -34,8 +35,12 @@ function App() {
                 <Route exact path="/">
                   <Dashboard />
                 </Route>
-                <Route path="/orders">
+                
+                <Route exact path="/orders">
                   <Orders />
+                </Route>
+                <Route path="/orders/:id">
+                  <Order />
                 </Route>
                 <Route path="/support-cases">
                   <SupportCases />
