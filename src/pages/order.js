@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ListGroup,Button} from 'react-bootstrap';
+import {Container, Col, Row, Media} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useParams } from 'react-router-dom'
 
@@ -10,10 +10,20 @@ const ORDER_QUERY = gql`
   query OrderQuery($id: String!){
     order(id: $id){
       id
-      status
+      submitDate
       totalPrice
       emailAddress
-      submitDate
+      status
+      tracking
+      purchases{
+        item{
+          price
+          name
+          resourceURL
+        }
+        size
+        quantity
+      }
     }
   }
   `
@@ -39,9 +49,35 @@ function Order(props) {
   return (
     <div>
         <h2>Order - #{data.order.id}</h2>
-        <ListGroup>
-          
-        </ListGroup>
+        <Container>
+          {data.order.purchases.map(purchase => (
+            <Row key={purchase.id} style={{marginTop: "10pt"}}>
+              <Col>
+                <Media>
+                    <img  alt={purchase.item.name}
+                        width={140}
+                        height={140}
+                        className="mr-3"
+                        variant="top" 
+                        src="https://s3.amazonaws.com/www.dobadmagic.com/test-media/placeholder_b.png" 
+                    />
+                </Media>
+              </Col>
+              <Col >
+                <Row ><span className="text-justify text-right">{purchase.item.name} - {purchase.size}</span></Row>
+                <Row className="text-right">{purchase.item.price} x {purchase.quantity}</Row>
+              </Col>
+              <Col>
+                <Row>
+                  {purchase.item.price * purchase.quantity}
+                </Row>
+              </Col>
+            </Row>
+          ))}
+          <Row>
+            {data.order.totalPrice}
+          </Row>
+        </Container>
     </div>
   );
 }
