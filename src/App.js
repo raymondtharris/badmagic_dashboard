@@ -9,6 +9,7 @@ import  Dashboard from './pages/dashboard';
 import  Orders from './pages/orders';
 import  Order from './pages/order';
 import SupportCases from './pages/supportcases';
+import SupportCase from './pages/supportcase';
 import Items from './pages/items';
 import Newsletter from './pages/newsletter';
 import NewsletterUsers from './pages/newsletterusers';
@@ -42,8 +43,11 @@ function App() {
                 <Route path="/orders/:id">
                   <Order />
                 </Route>
-                <Route path="/support-cases">
+                <Route exact path="/support-cases">
                   <SupportCases />
+                </Route>
+                <Route path="/support-cases/:id">
+                  <SupportCase />
                 </Route>
                 <Route path="/items">
                   <Items />

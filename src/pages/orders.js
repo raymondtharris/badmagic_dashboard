@@ -39,7 +39,7 @@ function Orders() {
           {data.orders.map(order=>(
               
               <ListGroup.Item key={order.id}>
-                <Button as="Link" href="/orders/00000000" value={order.id} variant="secondary" size="sm" >View</Button>
+                <Button as="Link" href={"/orders/"+ order.id} value={order.id} variant="secondary" size="sm" >View</Button>
                 {' '} {order.status} #{order.id} {order.totalPrice} {order.emailAddress} {order.submitDate}
                 </ListGroup.Item>
             ))}

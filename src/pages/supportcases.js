@@ -43,7 +43,7 @@ function SupportCases() {
           {data.supportCases.map(supportCase=>(
               
               <ListGroup.Item key={supportCase.id}>
-                <Button value={supportCase.id} variant="secondary" size="sm" >View</Button>
+                <Button href={"/support-cases/"+ supportCase.id}value={supportCase.id} variant="secondary" size="sm" >View</Button>
           {' '} {supportCase.supportStatus} #{supportCase.id} {supportCase.emailAddress} {supportCase.supportOwner.credentials.username} {supportCase.supportDate}
                 </ListGroup.Item>
             ))}
